@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<atlassian-plugin key="${atlassian.plugin.key}" name="${project.name}" plugins-version="2">
+  <plugin-info>
+    <description>${project.description}</description>
+    <version>${project.version}</version>
+    <vendor name="${project.organization.name}" url="${project.organization.url}"/>
+    <param name="plugin-icon">images/pluginIcon.png</param>
+    <param name="plugin-logo">images/pluginLogo.png</param>
+  </plugin-info>
+  <!-- add our i18n resource -->
+  <resource type="i18n" name="i18n" location="Versao"/>
+  <!-- add our web resources -->
+  <web-resource key="Versao-resources" name="Versao Web Resources">
+    <dependency>com.atlassian.auiplugin:ajs</dependency>
+    <resource type="download" name="Versao.css" location="/css/Versao.css"/>
+    <resource type="download" name="Versao.js" location="/js/Versao.js"/>
+    <resource type="download" name="images/" location="/images"/>
+    <context>Versao</context>
+  </web-resource>
+  <repository-hook name="valida fixVersion" i18n-name-key="my-merge-check-hook.name" key="my-merge-check-hook" class="versao.hook.MyMergeCheckHook">
+    <description key="my-merge-check-hook.description">Hook para validar o Fix Version cadastrado no jira</description>
+    <icon>icon-example.png</icon>
+    <config-form name="My Merge Check Hook Config" key="my-merge-check-hook-config">
+      <view>versao.hook.mymergecheckhook.view</view>
+      <directory location="/static/"/>
+    </config-form>
+  </repository-hook>
+</atlassian-plugin>
